@@ -1,0 +1,8 @@
+.vscode
+*.o
+*.elf
+*.hex
+*.list
+!boot/start.elf
+
+boot/kernel7.img

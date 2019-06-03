@@ -19,6 +19,6 @@ typedef struct _framebuffer_infos {
 
 #define RGB16(r,g,b) (((r)<<11) | ((g)<<5) | (b))
 
-uint16_t* gpu_init(uint32_t width, uint32_t height, uint32_t bpp);
+uint32_t* gpu_init(uint32_t width, uint32_t height, uint32_t bpp);
 
 #endif

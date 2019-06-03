@@ -6,7 +6,7 @@
 
 gpio_t pines_sw[2];
 volatile uint8_t runTime;
-uint16_t* screen;
+uint32_t* screen;
 
 void bsp_init(){
 	/*sw*/

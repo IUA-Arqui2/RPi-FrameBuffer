@@ -1,4 +1,5 @@
 #include "BSP/bsp.h"
+#include "assets/img.h"
 
 typedef union {
     uint32_t data;
@@ -6,26 +7,50 @@ typedef union {
         uint8_t B;
         uint8_t G;
         uint8_t R;
+        uint8_t dummy;
     } pixel;
 } pixel_t;
 
+
+typedef struct{
+    uint16_t x;
+    uint16_t y;
+    uint16_t ancho;
+    uint16_t alto;
+    pixel_t color;
+} rectangulo_t;
+
+void dibujar_rect(rectangulo_t c);
+
 int notmain ( void ) {
-    pixel_t p;
+    rectangulo_t c;
+    
     bsp_init();
 
-    p.pixel.R = 0;
-    p.pixel.G = 0xFF;
-    p.pixel.B = 0;
 
+    c.x = 100;
+    c.y = 76;
+    c.ancho = 300;
+    c.alto = 100;
+    c.color.pixel.R = 0;
+    c.color.pixel.G = 0xff;
+    c.color.pixel.B = 0;
+    
     while(1) {
-        for (int y = 0 ; y < SCREEN_HEIGHT ; y++) {
-            for( int x = 0 ; x < SCREEN_WIDTH ; x++ ) {
-                set_pixel(x,y, p.data );
-                p.pixel.R++;
-            }
-             p.pixel.G++;
-        }
-         p.pixel.B++;
+        //delay_us(20000);
+        dibujar_rect(c);
+        c.x++;
+        if(c.x > 1024)
+            c.x=0;
     }
     return(0);
+}
+
+
+void dibujar_rect(rectangulo_t c){    
+        for (int y = c.y ; y < c.y + c.ancho  ; y++) {
+            for( int x = c.x ; x < c.x + c.alto  ; x++ ) {
+                set_pixel(x,y, c.color.data );
+            }
+        }
 }

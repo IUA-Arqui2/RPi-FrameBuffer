@@ -6,7 +6,7 @@
 
 static FramebufferInfos framebuffer;
 
-uint16_t* gpu_init(uint32_t width, uint32_t height, uint32_t bpp) {
+uint32_t* gpu_init(uint32_t width, uint32_t height, uint32_t bpp) {
     framebuffer.physical_width = width;
     framebuffer.physical_height = height;
     framebuffer.virtual_width = width;
@@ -25,5 +25,5 @@ uint16_t* gpu_init(uint32_t width, uint32_t height, uint32_t bpp) {
         return 0;
     }
     
-    return (uint16_t*)(framebuffer.pointer-ADDR_OFFSET);
+    return (uint32_t*)(framebuffer.pointer-ADDR_OFFSET);
 }

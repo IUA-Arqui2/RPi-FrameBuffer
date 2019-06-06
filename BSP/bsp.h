@@ -5,7 +5,9 @@
 
 typedef enum {
 	sw_a,
-	sw_b
+	sw_b,
+	sw_c,
+	sw_d
 } sw_t;
 
 void bsp_init();

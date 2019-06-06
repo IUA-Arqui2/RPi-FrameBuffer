@@ -1,7 +1,7 @@
 ARMGNU ?= arm-none-eabi
 
 AOPS = --warn --fatal-warnings
-CFLAGS = -Wall -Werror -O2  -nostartfiles -ffreestanding
+CFLAGS = -Wall -Werror -O3  -nostartfiles -ffreestanding
 
 # Habría que inicializar la FPU en vectors.s
 #CFLAGS += -march=armv8-a+crc -mtune=cortex-a53 -mfpu=neon-fp-armv8 -mfloat-abi=hard
@@ -10,6 +10,12 @@ LDFLAGS =  -lgcc
 
 
 all : kernel7.img
+
+grabar:
+	sudo mount /dev/mmcblk0p1 /mnt/tarjeta
+	sudo cp boot/kernel7.img /mnt/tarjeta/kernel7.img
+	sync
+	sudo umount /dev/mmcblk0p1
 
 clean :
 	find . -iname "*.o" -exec rm -f {} \;
